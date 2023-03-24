@@ -10,13 +10,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Download Sloth
-        run: |
-          wget https://github.com/slok/sloth/releases/download/v0.11.0/sloth-linux-amd64
-          chmod +x sloth-linux-amd64
-
-      - name: Generate Output
-        run: ./sloth-linux-amd64 generate -i veilarbaktivitet.yml -o output.yaml
+      - name: Generate Sloth Output
+        uses: .github/actions/sloth
+        with:
+          inputFromAction: veilarbaktivitet.yml
+          outputFromAction: ./output.yaml
 
       - uses: actions/upload-artifact@v3
         with:
