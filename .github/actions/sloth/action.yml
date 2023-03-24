@@ -29,7 +29,5 @@ runs:
       id: generate
       run: |
         output=$(./sloth-linux-amd64 generate -i ${{ inputs.input-file }})
-        echo "$output" | sed 's/^/  /' > ${{ inputs.output-file }}
-
       env:
         SED: /bin/sed
