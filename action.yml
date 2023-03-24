@@ -13,5 +13,9 @@ inputs:
 runs:
   using: "docker"
   image: "docker://ghcr.io/slok/sloth:v0.11.0"
-
-  args: ["ls -a"]
+  args:
+    - generate
+    - -i
+    - ${{ inputs.inputFromAction }}
+    - -o
+    - ${{ inputs.outputFromAction }}
