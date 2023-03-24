@@ -28,5 +28,4 @@ runs:
       shell: bash
       id: generate
       run: |
-        output=$(./sloth-linux-amd64 generate -i ${{ inputs.input-file }})
-        echo "$output" | awk '{print "  " $0}' > ${{ inputs.output-file }}
+        ./sloth-linux-amd64 generate -i ${{ inputs.input-file }} > "$output" | awk '{print "  " $0}' > ${{ inputs.output-file }}
