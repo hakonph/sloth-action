@@ -29,11 +29,7 @@ runs:
       id: generate
       run: |
         output=$(./sloth-linux-amd64 generate -i ${{ inputs.input-file }})
-        if [ -n "${{ inputs.additional-content-file }}" ]; then
-          additional_content=$(cat ${{ inputs.additional-content-file }})
-          echo -e "$additional_content\n$output" | sed 's/^/  /' > ${{ inputs.output-file }}
-        else
-          echo "$output" | sed 's/^/  /' > ${{ inputs.output-file }}
-        fi
+        echo "$output" | sed 's/^/  /' > ${{ inputs.output-file }}
+
       env:
         SED: /bin/sed
