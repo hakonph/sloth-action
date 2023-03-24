@@ -1,0 +1,17 @@
+name: Sloth Action
+
+description: Generate Sloth output
+
+inputs:
+  inputFromAction:
+    description: 'The input for Sloth command'
+    required: true
+  outputFromAction:
+    description: 'The output for Sloth command'
+    required: true
+
+runs:
+  using: "docker"
+  image: "docker://ghcr.io/slok/sloth:v0.11.0"
+
+  args: ["generate -i ${{ inputs.inputFromAction }} -o ${{ inputs.outputFromAction }}"]

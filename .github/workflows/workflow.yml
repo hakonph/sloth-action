@@ -1,0 +1,18 @@
+name: Sloth Action
+
+on: [push]
+
+jobs:
+  generate:
+    name: Generate Sloth Output
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Generate Sloth Output
+        uses: hakonph/your-repo-name@v1
+        with:
+          inputFromAction: ./veilarbaktivitet.yml
+          outputFromAction: ./output.yaml
+
