@@ -30,5 +30,3 @@ runs:
     - name: Generate Output
       shell: bash
       run: echo "$output" | awk '{print "  " $0}' > ${{ inputs.output-file }}
-        
-        
