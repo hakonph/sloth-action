@@ -6,11 +6,9 @@ inputs:
   input-file:
     description: 'The path to the input YAML file.'
     required: true
-    default: 'veilarbaktivitet.yml'
   output-file:
     description: 'The path to write the generated YAML output to.'
-    required: false
-    default: ''
+    required: true
   additional-content-file:
     description: 'The path to a file with additional content to add to the beginning of the output.'
     required: false

@@ -13,8 +13,8 @@ jobs:
       - name: Generate Sloth Output
         uses: ./.github/actions/sloth
         with:
-          inputFromAction: ./veilarbaktivitet.yml
-          outputFromAction: output.yaml
+          input-file: ./veilarbaktivitet.yml
+          output-file: output.yaml
 
       - uses: actions/upload-artifact@v3
         with:
