@@ -11,8 +11,12 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Generate Sloth Output
-        uses: hakonph/your-repo-name@v1
+        uses: hakonph/sloth-action@main
         with:
-          inputFromAction: ./veilarbaktivitet.yml
-          outputFromAction: ./output.yaml
+          inputFromAction: veilarbaktivitet.yml
+          outputFromAction: output.yaml
 
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: ./output.yaml
