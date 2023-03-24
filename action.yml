@@ -10,6 +10,11 @@ inputs:
     description: 'The output for Sloth command'
     required: true
 
+outputs:
+  outputFromAction:
+    description: 'The output for Sloth command'
+
+
 runs:
   using: "docker"
   image: "docker://ghcr.io/slok/sloth:v0.11.0"
