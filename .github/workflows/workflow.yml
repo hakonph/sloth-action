@@ -14,7 +14,7 @@ jobs:
         uses: ./.github/actions/sloth
         with:
           inputFromAction: ./veilarbaktivitet.yml
-          outputFromAction: ./output.yaml
+          outputFromAction: output.yaml
 
       - uses: actions/upload-artifact@v3
         with:
