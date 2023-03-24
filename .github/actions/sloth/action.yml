@@ -1,0 +1,40 @@
+name: Download and Generate Sloth Output
+
+description: |
+  This action downloads the Sloth binary and generates an output YAML file using it, then adds the contents of another file to the beginning of the output and writes it to a file.
+
+inputs:
+  input-file:
+    description: 'The path to the input YAML file.'
+    required: true
+    default: 'veilarbaktivitet.yml'
+  output-file:
+    description: 'The path to write the generated YAML output to.'
+    required: false
+    default: ''
+  additional-content-file:
+    description: 'The path to a file with additional content to add to the beginning of the output.'
+    required: false
+    default: ''
+
+runs:
+  using: "composite"
+  steps:
+    - name: Download Sloth
+      shell: bash
+      run: |
+        wget https://github.com/slok/sloth/releases/download/v0.11.0/sloth-linux-amd64
+        chmod +x sloth-linux-amd64
+    - name: Generate Output
+      shell: bash
+      id: generate
+      run: |
+        output=$(./sloth-linux-amd64 generate -i ${{ inputs.input-file }})
+        if [ -n "${{ inputs.additional-content-file }}" ]; then
+          additional_content=$(cat ${{ inputs.additional-content-file }})
+          echo -e "$additional_content\n$output" | sed 's/^/  /' > ${{ inputs.output-file }}
+        else
+          echo "$output" | sed 's/^/  /' > ${{ inputs.output-file }}
+        fi
+      env:
+        SED: /bin/sed
