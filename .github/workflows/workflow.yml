@@ -16,4 +16,9 @@ jobs:
           chmod +x sloth-linux-amd64
 
       - name: Generate Output
-        run: ./sloth-linux-amd64 generate -i inputFromAction -o outputFromAction
+        run: ./sloth-linux-amd64 generate -i veilarbaktivitet.yml -o output.yaml
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: ./output.yaml
