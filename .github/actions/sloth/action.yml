@@ -24,7 +24,6 @@ runs:
         chmod +x sloth-linux-amd64
     - name: Generate Output
       shell: bash
-      run: output=$(./sloth-linux-amd64 generate -i ${{ inputs.input-file }})
-    - name: Generate Output
-      shell: bash
-      run: echo "$output" | awk '{print "  " $0}' > ${{ inputs.output-file }}
+      run: |
+        output=$(./sloth-linux-amd64 generate -i ${{ inputs.input-file }})
+        echo "$output" | awk '{print "  " $0}' > ${{ inputs.output-file }}
