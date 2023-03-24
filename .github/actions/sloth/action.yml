@@ -22,8 +22,14 @@ runs:
       run: |
         wget https://github.com/slok/sloth/releases/download/v0.11.0/sloth-linux-amd64
         chmod +x sloth-linux-amd64
+    - name: Add start of file
+      shell: bash
+      if: inputs.additional-content-file != ''
+      run: cat ${{ inputs.additional-content-file }} > ${{ inputs.output-file }}
     - name: Generate Output
       shell: bash
       run: |
-        output=$(./sloth-linux-amd64 generate -i ${{ inputs.input-file }})
-        echo "$output" | awk '{print "  " $0}' > ${{ inputs.output-file }}
+        ./sloth-linux-amd64 generate -i ${{ inputs.input-file }} \
+        | awk '!/^[[:space:]]*---[[:space:]]*$/' \ # Remove the --- separator
+        | awk '{print "  " $0}' \ # Indent the YAML to match the rest of the file
+        >> ${{ inputs.output-file }}
