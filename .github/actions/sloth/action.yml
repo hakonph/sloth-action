@@ -30,6 +30,6 @@ runs:
       shell: bash
       run: |
         ./sloth-linux-amd64 generate -i ${{ inputs.input-file }} \
-        | awk '!/^[[:space:]]*---[[:space:]]*$/' \ # Remove the --- separator
-        | awk '{print "  " $0}' \ # Indent the YAML to match the rest of the file
+        | awk '!/^[[:space:]]*---[[:space:]]*$/' \
+        | awk '{print "  " $0}' \ 
         >> ${{ inputs.output-file }}
