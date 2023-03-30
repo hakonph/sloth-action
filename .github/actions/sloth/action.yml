@@ -24,16 +24,17 @@ runs:
         chmod +x sloth-linux-amd64
     - name: Add start of file
       shell: bash
-      run: echo "
-apiVersion: monitoring.coreos.com/v1
-kind: PrometheusRule
-metadata:
-  name: veilarbaktivitet-error-rate
-  namespace: dab
-  labels:
-    team: dab
-spec:
-" > ${{ inputs.output-file }}
+      run: |
+        echo "
+        apiVersion: monitoring.coreos.com/v1
+        kind: PrometheusRule
+        metadata:
+          name: veilarbaktivitet-error-rate
+          namespace: dab
+        labels:
+          team: dab
+        spec:
+        " > ${{ inputs.output-file }}
     - name: Generate Output
       shell: bash
       run: |
