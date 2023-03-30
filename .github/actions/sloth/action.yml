@@ -24,7 +24,6 @@ runs:
         chmod +x sloth-linux-amd64
     - name: Add start of file
       shell: bash
-      if: inputs.additional-content-file != ''
       run: echo "
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
