@@ -9,10 +9,12 @@ inputs:
   output-file:
     description: 'The path to write the generated YAML output to.'
     required: true
-  additional-content-file:
-    description: 'The path to a file with additional content to add to the beginning of the output.'
-    required: false
-    default: ''
+  name:
+    description: 'name of the alert resource'
+    required: true
+  team:
+    description: 'team name and namespace'
+    required: true
 
 runs:
   using: "composite"
@@ -29,10 +31,10 @@ runs:
         apiVersion: monitoring.coreos.com/v1
         kind: PrometheusRule
         metadata:
-          name: veilarbaktivitet-error-rate
-          namespace: dab
+          name: ${{ inputs.name }}
+          namespace: ${{ inputs.team }}
         labels:
-          team: dab
+          team: ${{ inputs.team }}
         spec:
         " > ${{ inputs.output-file }}
     - name: Generate Output
