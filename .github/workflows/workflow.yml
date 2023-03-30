@@ -14,8 +14,9 @@ jobs:
         uses: ./.github/actions/sloth
         with:
           input-file: ./veilarbaktivitet.yml
-          additional-content-file: ./start.yml
           output-file: output.yaml
+          team: dab
+          name: veilarbaktivitet-alarm
 
       - uses: actions/upload-artifact@v3
         with:
