@@ -39,5 +39,8 @@ runs:
         " > ${{ inputs.output-file }}
     - name: Generate Output
       shell: bash
-      run: |
-        ./sloth-linux-amd64 generate -i ${{ inputs.input-file }} | awk '!/^[[:space:]]*---[[:space:]]*$/' | awk '{print "  " $0}' >> ${{ inputs.output-file }}
+      run: >
+        ./sloth-linux-amd64 generate -i ${{ inputs.input-file }} 
+        | awk '!/^[[:space:]]*---[[:space:]]*$/' 
+        | awk '{print "  " $0}' 
+        >> ${{ inputs.output-file }}
